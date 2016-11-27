@@ -1,5 +1,8 @@
 var React = require('react');
 var RecipeList = require('RecipeList');
+var AddRecipe = require('AddRecipe');
+var RecipeModal = require('RecipeModal');
+
 var RecipeApp = React.createClass({
   getInitialState: function(){
     return {
@@ -20,12 +23,18 @@ var RecipeApp = React.createClass({
       ]
     };
   },
+  handleAddRecipe: function(){
+    return (
+      <RecipeModal/>
+    )
+  },
   render: function(){
     var {recipes} = this.state;
 
     return (
       <div>
         <RecipeList recipes={recipes}/>
+        <AddRecipe onAddRecipe={this.handleAddRecipe}/>
       </div>
     )
   }
