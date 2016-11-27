@@ -1,33 +1,26 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
-var reactDOMServer = require('react-dom/server');
+var Boron = require('boron');
+var RecipeForm = require('RecipeForm');
 
+var Modal = require('boron/OutlineModal');
 var RecipeModal = React.createClass({
-  componentDidMount: function(){
-    var modalMarkup = (
-      <div id="recipe-modal" className="reveal text-center" data-reveal="">
-        <p>
-          Hello
-        </p>
-        <p>
-          <button className="button hollow" data-close="">
-            Add Recipe
-          </button>
-        </p>
-      </div>
-    );
-    var $modal = $(reactDOMServer.renderToString(modalMarkup));
-    $(ReactDOM.findDOMNode(this)).html($modal);
-    var modal = new Foundation.Reveal($('#recipe-modal'));
-    modal.open();
-  },
-  render: function(){
-    return (
-      <div>
-
-      </div>
-    )
-  }
-})
+    showModal: function(){
+        this.refs.modal.show();
+    },
+    hideModal: function(){
+        this.refs.modal.hide();
+    },
+    render: function() {
+        return (
+            <div>
+                <button className="button expanded" onClick={this.showModal}>Open</button>
+                <Modal ref="modal">
+                    <button className="button hollow float-right" onClick={this.hideModal}>x</button>
+                    <RecipeForm handleFormSubmit={this.hideModal}/>
+                </Modal>
+            </div>
+        );
+    }
+});
 
 module.exports = RecipeModal;
