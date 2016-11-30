@@ -11,7 +11,6 @@ var RecipeList = React.createClass({
         )
       })
     };
-
     return (
       <div>
         {renderRecipes()}

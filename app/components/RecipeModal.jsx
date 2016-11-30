@@ -11,15 +11,16 @@ var RecipeModal = React.createClass({
         this.refs.modal.hide();
     },
     render: function() {
-        return (
-            <div>
-                <button className="button expanded" onClick={this.showModal}>Open</button>
-                <Modal ref="modal">
-                    <button className="button hollow float-right" onClick={this.hideModal}>x</button>
-                    <RecipeForm handleFormSubmit={this.hideModal}/>
-                </Modal>
-            </div>
-        );
+      return (
+        <div>
+          <button className="button expanded" onClick={this.showModal}>Open</button>
+          <Modal ref="modal">
+              <button className="button hollow float-right" onClick={this.hideModal}>x</button>
+              <hr/>
+              <RecipeForm handleFormSubmit={this.hideModal}/>
+          </Modal>
+        </div>
+      );
     }
 });
 

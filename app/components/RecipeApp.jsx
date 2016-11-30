@@ -26,7 +26,9 @@ var RecipeApp = React.createClass({
     var {recipes} = this.state;
     return (
       <div>
+      <ul className="accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true">
         <RecipeList recipes={recipes}/>
+      </ul>
         <RecipeModal/>
       </div>
     )
