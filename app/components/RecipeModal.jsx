@@ -7,8 +7,9 @@ var RecipeModal = React.createClass({
     showModal: function(){
         this.refs.modal.show();
     },
-    hideModal: function(){
+    hideModal: function(myRecipes){
         this.refs.modal.hide();
+        this.props.onSubmit(myRecipes)
     },
     render: function() {
       return (

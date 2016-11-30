@@ -7,12 +7,12 @@ var Recipe = React.createClass({
     $(myId).toggle();
   },
   render: function(){
-    var {id,text} = this.props;
+    var {id,recipeName} = this.props;
     return (
       <li className="accordion-item" data-accordion-item="" onClick={this.onClick}>
-        <a href="#" className="accordion-title">{text}</a>
+        <a href="#" className="accordion-title">{recipeName}</a>
         <div className="accordion-content" data-tab-content="" id={id}>
-          {id}. {text}
+          {id}. {recipeName}
         </div>
       </li>
     )

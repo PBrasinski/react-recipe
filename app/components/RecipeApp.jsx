@@ -3,21 +3,24 @@ var RecipeList = require('RecipeList');
 var RecipeModal = require('RecipeModal');
 
 var RecipeApp = React.createClass({
+  onSubmit: function(myRecipes){
+    console.log(myRecipes.recipeName, myRecipes.ingredients);
+  },
   getInitialState: function(){
     return {
       recipes: [
         {
           id: 1,
-          text: 'Onion cream'
+          recipeName: 'Onion cream'
         },{
           id: 2,
-          text: 'Dumplings'
+          recipeName: 'Dumplings'
         },{
           id: 3,
-          text: 'Applepie'
+          recipeName: 'Applepie'
         },{
           id: 4,
-          text: 'Chocolate icecream'
+          recipeName: 'Chocolate icecream'
         }
       ]
     };
@@ -29,7 +32,7 @@ var RecipeApp = React.createClass({
         <ul className="accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true">
           <RecipeList recipes={recipes} />
         </ul>
-        <RecipeModal/>
+        <RecipeModal onSubmit={this.onSubmit}/>
       </div>
     )
   }
