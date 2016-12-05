@@ -1,13 +1,20 @@
 var React = require('react');
 var RecipeList = require('RecipeList');
 var RecipeModal = require('RecipeModal');
+var RecipeSearch = require('RecipeSearch');
 
 var RecipeApp = React.createClass({
+  onSearch: function(searchText){
+    this.setState({
+      searchText: searchText.toLowerCase()
+    })
+  },
   onSubmit: function(myRecipes){
     console.log(myRecipes.recipeName, myRecipes.ingredients);
   },
   getInitialState: function(){
     return {
+      searchText: '',
       recipes: [
         {
           id: 1,
@@ -29,6 +36,7 @@ var RecipeApp = React.createClass({
     var {recipes} = this.state;
     return (
       <div>
+        <RecipeSearch onSearch={this.onSearch}/>
         <ul className="accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true">
           <RecipeList recipes={recipes} />
         </ul>
