@@ -2,6 +2,7 @@ var React = require('react');
 var RecipeList = require('RecipeList');
 var RecipeModal = require('RecipeModal');
 var RecipeSearch = require('RecipeSearch');
+var uuid = require('node-uuid');
 
 var RecipeApp = React.createClass({
   onSearch: function(searchText){
@@ -9,24 +10,33 @@ var RecipeApp = React.createClass({
       searchText: searchText.toLowerCase()
     })
   },
-  onSubmit: function(myRecipes){
+  handleAddRecipe: function(myRecipes){
     console.log(myRecipes.recipeName, myRecipes.ingredients);
+    this.setState({
+      recipes: [
+        ...this.state.recipes,
+        {
+          id: uuid(),
+          recipeName: myRecipes.recipeName
+        }
+      ]
+    })
   },
   getInitialState: function(){
     return {
       searchText: '',
       recipes: [
         {
-          id: 1,
+          id: uuid(),
           recipeName: 'Onion cream'
         },{
-          id: 2,
+          id: uuid(),
           recipeName: 'Dumplings'
         },{
-          id: 3,
+          id: uuid(),
           recipeName: 'Applepie'
         },{
-          id: 4,
+          id: uuid(),
           recipeName: 'Chocolate icecream'
         }
       ]
@@ -40,7 +50,7 @@ var RecipeApp = React.createClass({
         <ul className="accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true">
           <RecipeList recipes={recipes} />
         </ul>
-        <RecipeModal onSubmit={this.onSubmit}/>
+        <RecipeModal onSubmit={this.handleAddRecipe}/>
       </div>
     )
   }

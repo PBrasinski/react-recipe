@@ -8,5 +8,5 @@ var RecipeApp = require('RecipeApp');
 describe('RecipeApp', () => {
   it('should exist', () => {
     expect(RecipeApp).toExist();
-  })
+  });
 })
