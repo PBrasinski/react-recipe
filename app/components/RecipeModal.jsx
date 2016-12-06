@@ -7,9 +7,13 @@ var RecipeModal = React.createClass({
     showModal: function(){
         this.refs.modal.show();
     },
-    hideModal: function(myRecipes){
+    hideModal: function(){
         this.refs.modal.hide();
-        this.props.onSubmit(myRecipes)
+
+    },
+    submitModal: function(myRecipes){
+      this.refs.modal.hide();
+      this.props.onSubmit(myRecipes)
     },
     render: function() {
       return (
@@ -18,7 +22,7 @@ var RecipeModal = React.createClass({
           <Modal ref="modal">
               <button className="button hollow float-right" onClick={this.hideModal}>x</button>
               <hr/>
-              <RecipeForm handleFormSubmit={this.hideModal}/>
+              <RecipeForm handleFormSubmit={this.submitModal}/>
           </Modal>
         </div>
       );

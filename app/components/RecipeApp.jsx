@@ -3,8 +3,15 @@ var RecipeList = require('RecipeList');
 var RecipeModal = require('RecipeModal');
 var RecipeSearch = require('RecipeSearch');
 var uuid = require('node-uuid');
+var RecipeAPI = require('RecipeAPI');
 
 var RecipeApp = React.createClass({
+getInitialState: function(){
+  return {
+    searchText: '',
+    recipes: RecipeAPI.getRecipes()
+  };
+},
   onSearch: function(searchText){
     this.setState({
       searchText: searchText.toLowerCase()
@@ -17,30 +24,14 @@ var RecipeApp = React.createClass({
         ...this.state.recipes,
         {
           id: uuid(),
-          recipeName: myRecipes.recipeName
+          recipeName: myRecipes.recipeName,
+          ingredients: myRecipes.ingredients
         }
       ]
-    })
+    });
   },
-  getInitialState: function(){
-    return {
-      searchText: '',
-      recipes: [
-        {
-          id: uuid(),
-          recipeName: 'Onion cream'
-        },{
-          id: uuid(),
-          recipeName: 'Dumplings'
-        },{
-          id: uuid(),
-          recipeName: 'Applepie'
-        },{
-          id: uuid(),
-          recipeName: 'Chocolate icecream'
-        }
-      ]
-    };
+  componentDidUpdate: function(){
+    RecipeAPI.setRecipes(this.state.recipes);
   },
   render: function(){
     var {recipes} = this.state;
